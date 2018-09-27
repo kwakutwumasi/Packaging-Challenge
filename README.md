@@ -59,7 +59,7 @@ dependencies {
 
 ###### Using the JAR file
 
-Use this [link](https://raw.github.com/kwakutwumasi/Packaging-Challenge/mvn-repo/kwaku/twumasi/packager-challenge/0.0.1/packager-challenge-0.0.1.jar)
+Use this [link](https://raw.github.com/kwakutwumasi/Packaging-Challenge/mvn-repo/kwaku/twumasi/afriyie/packager-challenge/0.0.1/packager-challenge-0.0.1.jar)
 to download the library archive then add it to your project class path.
 
 ##### Repository Structure
