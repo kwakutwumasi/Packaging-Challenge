@@ -57,7 +57,12 @@ public class PackerFileParserTest {
 		parserImpl.parse(testStream);
 	}
 
-	
+	@Test(expected=APIException.class)
+	public void testEmptyStream() throws Exception {
+		ByteArrayInputStream testStream = new ByteArrayInputStream("".getBytes());
+		parserImpl.parse(testStream);
+	}
+
 	@Test(expected=APIException.class)
 	public void testParseEmpty() throws Exception {
 		parserImpl.parse("src"+File.separator+"test"
