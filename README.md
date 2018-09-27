@@ -9,11 +9,63 @@ A packager that accepts a test input file containing a list of items with index,
 ##### Building
 ###### Maven
 
+Run the mvn:package goal to create the library artifact. Use mvn:install to install to your local repository
+
+##### Using the library
+###### Maven
+
+Add the maven repository
+
+```
+<repositories>
+    <repository>
+        <id>YOUR-PROJECT-NAME-mvn-repo</id>
+        <url>https://raw.github.com/kwakutwumasi/Packaging-Challenge/mvn-repo/</url>
+    </repository>
+</repositories>
+
+```
+
+then add the dependency
+
+```
+<dependency>
+	<groupId>kwaku.twumasi.afriyie</groupId>
+	<artifactId>packager-challenge</artifactId>
+	<version>0.0.1</version>
+</dependency>
+
+```
+
 ###### Gradle
+
+Gradle supports using maven repositories for dependencies. Add the repository :
+
+```groovy
+repositories {
+    REPO_NAME {
+        url "https://raw.github.com/kwakutwumasi/Packaging-Challenge/mvn-repo/"
+    }
+}
+```
+
+then add the dependency: 
+
+```groovy
+dependencies {
+    implementation 'kwaku.twumasi.afriyie:packager-challenge:0.0.1'
+}
+```
 
 ###### Using the JAR file
 
+Use this [link](https://raw.github.com/kwakutwumasi/Packaging-Challenge/mvn-repo/kwaku/twumasi/packager-challenge/0.0.1/packager-challenge-0.0.1.jar)
+to download the library archive then add it to your project class path.
+
 ##### Repository Structure
+
+* **/master** The main repository containing source code
+* **/mvn-repo** Branch holding the maven repository
 
 ##### Design Notes
 
@@ -21,6 +73,10 @@ This problem is a partitioning and a decision problem. The task requires that fi
 <br />
 Decision and partition problems are best handled using tree structures.
 <br />
+![binarytree.png](https://raw.github.com/kwakutwumasi/Packaging-Challenge/master/documents/binarytree.png)
+
+###### Fig 1: The image describes a binary tree that can be used to generate all the possible ways of partitioning three objects into two groups. Traversing the tree from the root to each leaf describes one of the possible partitions
+
 The partitioning can be modeled using a binary tree where each level of the tree represents the selection of the corresponding items into one of two groups. The full partition tree will be of height N+1 where N is the number items to partition, and will have 2<sup>N</sup> leaf nodes representing 2<sup>N</sup> different ways of partitioning N items into two list.
 <br />
 In order to select the best choice we need to examine the partitions that first meet the criteria of having a weight less than the target weight, then we need to compare each candidate group and select the group with the highest cost. This would mean executing an exhaustive search of the tree. 
