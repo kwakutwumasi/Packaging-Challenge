@@ -39,16 +39,10 @@ public class PackerFileParserTest {
 	}
 	
 	//Test some parser edge cases	
-	@Test
+	@Test(expected=APIException.class)
 	public void testSpacedEntries() throws Exception {
 		ByteArrayInputStream testStream = new ByteArrayInputStream("81 :	( 1 ,  53.38	,€45 )".getBytes());
-		PackerFileEntry[] entries = parserImpl.parse(testStream);
-		assertThat(entries.length, is(1));
-		assertThat(entries[0].getWeightLimit(), is(81d));
-		assertThat(entries[0].getPackageItems().size(), is(1));
-		assertThat(entries[0].getPackageItems().get(0).getIndex(), is(1));
-		assertThat(entries[0].getPackageItems().get(0).getCost(), is(45d));
-		assertThat(entries[0].getPackageItems().get(0).getWeight(), is(53.38d));
+		parserImpl.parse(testStream);
 	}
 
 	@Test(expected=APIException.class)
@@ -58,8 +52,8 @@ public class PackerFileParserTest {
 	}
 
 	@Test(expected=APIException.class)
-	public void testEmptyStream() throws Exception {
-		ByteArrayInputStream testStream = new ByteArrayInputStream("".getBytes());
+	public void testEmptyMissingEntries() throws Exception {
+		ByteArrayInputStream testStream = new ByteArrayInputStream("81".getBytes());
 		parserImpl.parse(testStream);
 	}
 
