@@ -4,13 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.mobiquityinc.exception.APIException;
 import com.mobiquityinc.packer.model.PackageItem;
 import com.mobiquityinc.packer.model.PackerFileEntry;
 
 public class PackerFileEntryTest {
 
 	@Test
-	public void testHashCodeEquals() {
+	public void testHashCodeEquals() throws Exception {
 		PackageItem item1 = new PackageItem().withCostAs(10d)
 				.withIndexAs(1)
 				.withWeightAs(20d),
@@ -33,5 +34,16 @@ public class PackerFileEntryTest {
 		assertFalse(entry1.equals(new PackerFileEntry().withWeightLimitAs(11)
 				.add(item1)
 				.add(item2)));
+	}
+	
+	@Test(expected=APIException.class)
+	public void testInvalidIndex() throws Exception {
+		new PackerFileEntry().withWeightLimitAs(74)
+		.add(new PackageItem().withCostAs(10d)
+				.withIndexAs(1)
+				.withWeightAs(20d))
+		.add(new PackageItem().withCostAs(11d)
+				.withIndexAs(3)
+				.withWeightAs(30d));
 	}
 }
