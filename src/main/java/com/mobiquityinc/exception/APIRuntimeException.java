@@ -9,5 +9,5 @@ public class APIRuntimeException extends RuntimeException {
 
 	public APIRuntimeException(String message, Throwable cause) {
 		super(message, cause);
-	}	
+	}
 }
