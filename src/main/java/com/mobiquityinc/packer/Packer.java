@@ -41,7 +41,7 @@ public class Packer {
 			throw new APIException(Messages.get("invalid.packer.entry"));
 			
 		List<Package> candidatePackages = Collections.synchronizedList(new ArrayList<>());
-		findCandidates(packerFileEntry,candidatePackages, 0);
+		findCandidates(packerFileEntry, candidatePackages, 0);
 		
 		if(candidatePackages.isEmpty())
 			return new Package();
@@ -67,7 +67,9 @@ public class Packer {
 	private void findCandidates(PackerFileEntry packerFileEntry,
 			List<Package> candidatePackages, int i, Package currentPackage) {
 		if(i==packerFileEntry.getPackageItems().size()) {
-			candidatePackages.add(currentPackage);
+			if(currentPackage.size()>1)
+				candidatePackages.add(currentPackage);
+			
 			return;
 		}
 		
