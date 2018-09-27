@@ -20,23 +20,17 @@ public class PackerTest {
 				+File.separator+"test.parserfile");
 
 		BufferedReader bufferedReader = new BufferedReader(new StringReader(results));
-		assertThat(bufferedReader.readLine(), is("1"));
-		assertThat(bufferedReader.readLine(), is("_"));
 		assertThat(bufferedReader.readLine(), is("4"));
-		assertThat(bufferedReader.readLine(), is("0"));
-		assertThat(bufferedReader.readLine(), is("_"));
-		assertThat(bufferedReader.readLine(), is("2"));
 		assertThat(bufferedReader.readLine(), is("_"));
 		assertThat(bufferedReader.readLine(), is("2,7"));
-		assertThat(bufferedReader.readLine(), is("1"));
+		assertThat(bufferedReader.readLine(), is("8,9"));
 		assertThat(bufferedReader.readLine(), is("_"));
-		assertThat(bufferedReader.readLine(), is("6"));
-		assertThat(bufferedReader.readLine(), is("0"));
-		assertThat(bufferedReader.readLine(), is("_"));
-		assertThat(bufferedReader.readLine(), is("4"));
-		assertThat(bufferedReader.readLine(), is("_"));
-		assertThat(bufferedReader.readLine(), is("1,2"));
-		assertThat(bufferedReader.readLine(), is("3,4"));
+		assertThat(bufferedReader.readLine(), is("1,2,3,4"));
+		assertThat(bufferedReader.readLine(), is("2,5,9"));
+		String next = bufferedReader.readLine();
+		assertTrue(next.equals("1,2") || next.equals("2,3") || next.equals("3,4"));
+		next = bufferedReader.readLine();
+		assertTrue(next.equals("1") || next.equals("2"));
 	}
 
 }
