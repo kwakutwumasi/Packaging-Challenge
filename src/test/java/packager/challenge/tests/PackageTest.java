@@ -30,6 +30,7 @@ public class PackageTest {
 				.withIndexAs(4)
 				.withWeightAs(30d)));
 		assertThat(packageTest.toString(), is("4\n_\n1,2\n3,4"));
+		assertThat(new Package().toString(), is("0\n_"));
 	}
 
 }
