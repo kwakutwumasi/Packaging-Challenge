@@ -26,6 +26,7 @@ public class PackerFileParserTest {
 		assertThat(entries[0].getPackageItems().size(), is(6));
 		assertThat(entries[0].getPackageItems().get(0).getIndex(), is(1));
 		assertThat(entries[0].getPackageItems().get(0).getCost(), is(45d));
+		assertThat(entries[0].getPackageItems().get(0).getCurrency(), is("€"));
 		assertThat(entries[0].getPackageItems().get(0).getWeight(), is(53.38d));
 		//No need to test each entry. Just check the last entry. If the last entry is correct,
 		//then all entries would have been parsed
@@ -33,6 +34,7 @@ public class PackerFileParserTest {
 		assertThat(entries[5].getPackageItems().size(), is(4));
 		assertThat(entries[5].getPackageItems().get(3).getIndex(), is(4));
 		assertThat(entries[5].getPackageItems().get(3).getCost(), is(70d));
+		assertThat(entries[5].getPackageItems().get(3).getCurrency(), is("€"));
 		assertThat(entries[5].getPackageItems().get(3).getWeight(), is(8.70d));
 	}
 	
