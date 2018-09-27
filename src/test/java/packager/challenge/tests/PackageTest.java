@@ -33,4 +33,18 @@ public class PackageTest {
 		assertThat(new Package().toString(), is("0\n_"));
 	}
 
+	@Test
+	public void testCreateClone() throws Exception {
+		Package packageTest = new Package();
+		packageTest.addAll(Arrays.asList(new PackageItem().withCostAs(10d)
+				.withIndexAs(1)
+				.withWeightAs(20d),new PackageItem().withCostAs(11d)
+				.withIndexAs(2)
+				.withWeightAs(30d)));
+		
+		Package packageClone = packageTest.createClone();
+		
+		assertEquals(packageClone, packageTest);
+		assertFalse(packageClone == packageTest);
+	}
 }

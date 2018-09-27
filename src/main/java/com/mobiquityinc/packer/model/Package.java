@@ -31,6 +31,10 @@ public class Package extends ArrayList<PackageItem> {
 		forEach(item->totaller.add(item.getWeight()));
 		return totaller.getTotal();
 	}
+		
+	public Package createClone() {
+		return (Package) super.clone();
+	}
 	
 	@Override
 	public String toString() {
