@@ -17,11 +17,11 @@ A packager that accepts a test input file containing a list of items with index,
 
 ##### Design Notes
 
-This problem is a partition and a decision problem. The task requires that first the items be partitioned into groups whose total weight is less than the maximum weight. Then each group needs to be compared, and the group with the highest cost should be returned.
+This problem is a partitioning and a decision problem. The task requires that first the items be partitioned into groups whose total weight is less than the maximum weight. Then each group needs to be compared, and the group with the highest cost should be returned.
 <br />
 Decision and partition problems are best handled using tree structures.
 <br />
-The partitioning can be modeled using a binary tree where each level of the tree represents the selection of the corresponding items into one of two groups. The full partition tree will be of height N+1 where N is the number items to partition, and will have 2<sup>N</sup> leaf nodes representing 2<sup>N</sup> different ways of partitioning N items.
+The partitioning can be modeled using a binary tree where each level of the tree represents the selection of the corresponding items into one of two groups. The full partition tree will be of height N+1 where N is the number items to partition, and will have 2<sup>N</sup> leaf nodes representing 2<sup>N</sup> different ways of partitioning N items into two list.
 <br />
 In order to select the best choice we need to examine the partitions that first meet the criteria of having a weight less than the target weight, then we need to compare each candidate group and select the group with the highest cost. This would mean executing an exhaustive search of the tree. 
 <br />

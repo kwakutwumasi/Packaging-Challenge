@@ -31,7 +31,7 @@ public class PackerFileParserFactoryTest {
 
 	@Test
 	public void testGetWithNewImplementation() throws Exception {
-		PackerFileParserFactory.reset();
+		PackerFileParserFactory.setParser(null);
 		ClassLoader loader = new ClassLoader() {
 			@Override
 			protected Enumeration<URL> findResources(String name) throws IOException {
@@ -60,7 +60,7 @@ public class PackerFileParserFactoryTest {
 		try {
 			assertThat(PackerFileParserFactory.get(), instanceOf(TestPackerFileParser.class));
 		} finally {
-			PackerFileParserFactory.reset();
+			PackerFileParserFactory.setParser(null);
 			Thread.currentThread().setContextClassLoader(oldLoader);
 		}		
 	}

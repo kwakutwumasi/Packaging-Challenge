@@ -1,6 +1,9 @@
 package com.mobiquityinc.exception;
 
-public class APIRuntimeException extends RuntimeException {
+/**Exception thrown when there is an unrecoverable error during processing.
+ * @author Kwaku Twumasi-Afriyie <kwaku.twumasi@quakearts.com>
+ *
+ */public class APIRuntimeException extends RuntimeException {
 
 	/**
 	 * 

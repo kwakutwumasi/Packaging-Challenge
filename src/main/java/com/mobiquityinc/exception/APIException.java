@@ -1,5 +1,9 @@
 package com.mobiquityinc.exception;
 
+/**Exception thrown when there is an error parsing the input file
+ * @author Kwaku Twumasi-Afriyie <kwaku.twumasi@quakearts.com>
+ *
+ */
 public class APIException extends Exception {
 
 	/**

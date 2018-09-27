@@ -16,6 +16,10 @@ import com.mobiquityinc.packer.i18n.Messages;
 import com.mobiquityinc.packer.model.PackageItem;
 import com.mobiquityinc.packer.model.PackerFileEntry;
 
+/**The default implementation of the parser
+ * @author Kwaku Twumasi-Afriyie <kwaku.twumasi@quakearts.com>
+ *
+ */
 public class PackerFileParserImpl implements PackerFileParser {
 
 	private static final Map<String, Boolean> currencyMap = new HashMap<>();
@@ -31,6 +35,7 @@ public class PackerFileParserImpl implements PackerFileParser {
 		
 		String line;
 		int count=0;
+		//Process the file line by line
 		while ((line = reader.readLine())!=null) {
 			processLine(line, entries,++count);
 		}
@@ -42,9 +47,12 @@ public class PackerFileParserImpl implements PackerFileParser {
 	}
 
 	private void processLine(String line, List<PackerFileEntry> entries,int lineCount) throws APIException {
+		//This parser follows strict parsing protocols. If the file does not fit the specified pattern, an error
+		//is thrown
 		String[] lineParts = line.split("\\s+:\\s+",2);
 		Double weightLimit; 
 		try {
+			//Pick the weight limit first
 			weightLimit = Double.parseDouble(lineParts[0]);
 		} catch (NumberFormatException e) {
 			throw new APIException(MessageFormat.format(Messages.get("invalid.weight.limit"), line, lineCount));
