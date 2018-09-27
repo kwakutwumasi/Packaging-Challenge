@@ -60,9 +60,7 @@ public class PackerFileEntry {
 		PackerFileEntry other = (PackerFileEntry) obj;
 		if (!packageItems.equals(other.packageItems))
 			return false;
-		if (Double.doubleToLongBits(weightLimit) != Double.doubleToLongBits(other.weightLimit))
-			return false;
-		return true;
+		return Double.doubleToLongBits(weightLimit) != Double.doubleToLongBits(other.weightLimit);
 	}
 	
 	
