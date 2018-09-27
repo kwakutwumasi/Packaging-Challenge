@@ -9,7 +9,6 @@ import java.io.StringReader;
 
 import org.junit.Test;
 
-import com.mobiquityinc.exception.APIException;
 import com.mobiquityinc.packer.Packer;
 
 public class PackerTest {
