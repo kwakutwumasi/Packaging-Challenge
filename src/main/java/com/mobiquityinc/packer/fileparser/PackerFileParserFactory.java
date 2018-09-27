@@ -24,4 +24,8 @@ public class PackerFileParserFactory {
 		
 		return parser;
 	}
+	
+	public static void reset() {
+		parser = null;
+	}
 }
