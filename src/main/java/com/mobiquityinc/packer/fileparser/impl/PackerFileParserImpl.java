@@ -16,7 +16,9 @@ import com.mobiquityinc.packer.i18n.Messages;
 import com.mobiquityinc.packer.model.PackageItem;
 import com.mobiquityinc.packer.model.PackerFileEntry;
 
-/**The default implementation of the parser
+/**The default implementation of the parser. Each line of the file follows the format 
+ *  ''WEIGHTLIMIT : (INDEX, WEIGHT, COST) (INDEX, WEIGHT, COST) ...'' where WEIGHTLIMIT and WEIGHT is a valid number, 
+ *  INDEX is a valid integer and COST is of the format CURRENCYSYMBOL+AMOUNT, ex $20
  * @author Kwaku Twumasi-Afriyie <kwaku.twumasi@quakearts.com>
  *
  */

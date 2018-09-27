@@ -22,9 +22,9 @@ import com.mobiquityinc.packer.model.PackageItem;
  *
  */
 public class Packer {
-	/**A utility method for processing a test file. Each line of the file follows the format 
-	 * ''WEIGHTLIMIT : (INDEX, WEIGHT, COST) (INDEX, WEIGHT, COST) ...'' where WEIGHTLIMIT and WEIGHT is a valid number, 
-	 *  INDEX is a valid integer and COST is of the format CURRENCYSYMBOL+AMOUNT, ex $20
+	/**A utility method for processing a test file. See the documentation for the
+	 * default parser for file format information. The default parser is
+	 * {@link com.mobiquityinc.packer.fileparser.impl.PackerFileParserImpl PackerFileParserImpl}.
 	 * @param testFile the file containing packer file entries
 	 * @return A string containing the list of packages that 
 	 * fall below the maximum weight and have the highest total cost
