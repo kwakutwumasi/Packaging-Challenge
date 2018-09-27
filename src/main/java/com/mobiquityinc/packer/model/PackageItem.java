@@ -1,12 +1,10 @@
 package com.mobiquityinc.packer.model;
 
-import java.util.Currency;
-
 public class PackageItem {
 	private int index;
 	private double weight;
 	private double cost;
-	private Currency currency;
+	private String currency;
 
 	public int getIndex() {
 		return index;
@@ -47,15 +45,15 @@ public class PackageItem {
 		return this;
 	}
 	
-	public Currency getCurrency() {
+	public String getCurrency() {
 		return currency;
 	}
 	
-	public void setCurrency(Currency currency) {
+	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
 	
-	public PackageItem withCurrencyAs(Currency currency) {
+	public PackageItem withCurrencyAs(String currency) {
 		setCurrency(currency);
 		return this;
 	}
