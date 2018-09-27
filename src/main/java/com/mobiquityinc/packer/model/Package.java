@@ -38,7 +38,12 @@ public class Package extends ArrayList<PackageItem> {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "";
+		if(size()==0)
+			return "_";
+		
+		StringBuilder builder = new StringBuilder();
+		forEach(item->builder.append(builder.length()>0?",":"").append(item.getIndex()));
+		
+		return builder.toString();
 	}
 }
