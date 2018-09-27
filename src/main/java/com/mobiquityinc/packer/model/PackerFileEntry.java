@@ -21,7 +21,7 @@ public class PackerFileEntry {
 	}
 
 	public PackerFileEntry withWeightLimitAs(double weightLimit) {
-		this.weightLimit = weightLimit;
+		setWeightLimit(weightLimit);
 		return this;
 	}
 

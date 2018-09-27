@@ -41,7 +41,15 @@ public class Packer {
 			throw new APIException(Messages.get("invalid.packer.entry"));
 			
 		List<Package> candidatePackages = Collections.synchronizedList(new ArrayList<>());
-		findCandidates(packerFileEntry, candidatePackages, 0);
+		CompletableFuture<?> future = findCandidates(packerFileEntry, candidatePackages, 0);
+		
+		try {
+			future.get();
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		} catch( ExecutionException e) {
+			throw new APIRuntimeException("Unable to process items", e);
+		}
 		
 		if(candidatePackages.isEmpty())
 			return new Package();
@@ -67,7 +75,7 @@ public class Packer {
 	private void findCandidates(PackerFileEntry packerFileEntry,
 			List<Package> candidatePackages, int i, Package currentPackage) {
 		if(i==packerFileEntry.getPackageItems().size()) {
-			if(currentPackage.size()>1)
+			if(!currentPackage.isEmpty())
 				candidatePackages.add(currentPackage);
 			
 			return;

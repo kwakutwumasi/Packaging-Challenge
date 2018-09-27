@@ -26,7 +26,7 @@ public class PackerFileParserTest {
 		PackerFileEntry[] entries = parserImpl.parse("src"+File.separator+"test"
 				+File.separator+"resources"
 				+File.separator+"test.parserfile");
-		assertThat(entries.length, is(9));
+		assertThat(entries.length, is(10));
 		assertThat(entries[0].getWeightLimit(), is(81d));
 		assertThat(entries[0].getPackageItems().size(), is(6));
 		assertThat(entries[0].getPackageItems().get(0).getIndex(), is(1));
@@ -35,15 +35,22 @@ public class PackerFileParserTest {
 		assertThat(entries[0].getPackageItems().get(0).getWeight(), is(53.38d));
 		//No need to test each entry. Just check the last entry. If the last entry is correct,
 		//then all entries would have been parsed
-		assertThat(entries[8].getWeightLimit(), is(50.80d));
-		assertThat(entries[8].getPackageItems().size(), is(4));
-		assertThat(entries[8].getPackageItems().get(3).getIndex(), is(4));
-		assertThat(entries[8].getPackageItems().get(3).getCost(), is(100d));
-		assertThat(entries[8].getPackageItems().get(3).getCurrency(), is("€"));
-		assertThat(entries[8].getPackageItems().get(3).getWeight(), is(91d));
+		assertThat(entries[9].getWeightLimit(), is(50.80d));
+		assertThat(entries[9].getPackageItems().size(), is(4));
+		assertThat(entries[9].getPackageItems().get(3).getIndex(), is(4));
+		assertThat(entries[9].getPackageItems().get(3).getCost(), is(100d));
+		assertThat(entries[9].getPackageItems().get(3).getCurrency(), is("€"));
+		assertThat(entries[9].getPackageItems().get(3).getWeight(), is(50.80d));
 	}
 	
 	//Test some parser edge cases	
+	@Test
+	public void testFileNotFound() throws Exception {
+		expectedException.expect(APIException.class);
+		expectedException.expectMessage(is("There was an input exception while processing file notfound"));
+		parserImpl.parse("notfound");
+	}
+	
 	@Test
 	public void testSpacedEntries() throws Exception {
 		expectedException.expect(APIException.class);
@@ -206,6 +213,17 @@ public class PackerFileParserTest {
 		parserImpl.parse("src"+File.separator+"test"
 				+File.separator+"resources"
 				+File.separator+"testInvalidPrice4.parserfile");
+	}
+	
+	@Test
+	public void testParseInvalidPrice5() throws Exception {
+		expectedException.expect(APIException.class);
+		expectedException.expectMessage(is("The cost entry could not be parsed. "
+				+ "Ensure that it is of the format CURRENCYSYMBOL+AMOUNT, ex $20. "
+				+ "The error occurred on line 1 (1,53.38,€INV)"));
+		parserImpl.parse("src"+File.separator+"test"
+				+File.separator+"resources"
+				+File.separator+"testInvalidPrice5.parserfile");
 	}
 
 	@Test
